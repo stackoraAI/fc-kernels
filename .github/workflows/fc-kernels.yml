@@ -34,9 +34,6 @@ jobs:
       - name: Get next version
         id: get-version
         run: |
-          version=${{ steps.last_release.outputs.tag_name }}
-          result=$(echo ${version} | awk -F. -v OFS=. '{$NF += 1 ; print}')
-          echo "version=$result" >> $GITHUB_OUTPUT
 
       - name: Test next version
         run: echo "Next version is ${{ steps.get-version.outputs.version }}"
@@ -59,5 +56,3 @@ jobs:
           destination: ${{ vars.GCP_BUCKET_NAME }}/kernels
           gzip: false
           parent: false
-
-
